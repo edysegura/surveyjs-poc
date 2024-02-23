@@ -1,18 +1,19 @@
 const surveyJson = {
+  showProgressBar: 'top',
   pages: [
     {
       visible: true,
       elements: [
         {
-          name: 'satisfaction-score',
-          title: 'How would you describe your experience with our product?',
+          name: 'fitness-goal',
+          title: 'What is your primary fitness goal?',
           type: 'radiogroup',
           choices: [
-            { value: 5, text: 'Fully satisfying' },
-            { value: 4, text: 'Generally satisfying' },
-            { value: 3, text: 'Neutral' },
-            { value: 2, text: 'Rather unsatisfying' },
-            { value: 1, text: 'Not satisfying at all' },
+            { value: 1, text: 'Weight Loss' },
+            { value: 2, text: 'Muscle Building' },
+            { value: 3, text: 'Flexibility' },
+            { value: 4, text: 'Endurance Training' },
+            { value: 5, text: 'Being Healthier' },
           ],
           isRequired: true,
         },
@@ -21,16 +22,15 @@ const surveyJson = {
     {
       elements: [
         {
-          name: 'what-would-make-you-more-satisfied',
-          title: 'What can we do to make your experience more satisfying?',
-          type: 'comment',
-        },
-        {
-          name: 'nps-score',
-          title: 'On a scale of zero to ten, how likely are you to recommend our product to a friend or colleague?',
-          type: 'rating',
-          rateMin: 0,
-          rateMax: 10,
+          name: 'workouts-preference',
+          title: 'How do you prefer your workouts?',
+          type: 'radiogroup',
+          choices: [
+            { value: 1, text: 'Hardcore' },
+            { value: 2, text: 'Intense' },
+            { value: 3, text: 'Moderate' },
+            { value: 4, text: 'Mild and relaxing' },
+          ],
         },
       ],
     },
@@ -38,7 +38,7 @@ const surveyJson = {
       elements: [
         {
           name: 'how-can-we-improve',
-          title: 'In your opinion, how could we improve our product?',
+          title: 'In your opinion, what we could do to make even better your experience?',
           type: 'comment',
         },
       ],
