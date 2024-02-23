@@ -2,6 +2,14 @@ const surveyJson = {
   showProgressBar: 'top',
   pages: [
     {
+      elements: [
+        {
+          type: 'html',
+          html: '<h2>In this survey, we will ask you a couple questions about your preferences.</h2>',
+        },
+      ],
+    },
+    {
       visible: true,
       elements: [
         {
