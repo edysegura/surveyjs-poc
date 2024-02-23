@@ -1,16 +1,19 @@
+// References:
+// https://surveyjs.io/form-library/documentation/design-survey/create-a-multi-page-survey
+
 const surveyJson = {
   showProgressBar: 'top',
+  completedHtml: '<h3>Thank you! Together we are better!!</h3>',
   pages: [
     {
       elements: [
         {
           type: 'html',
-          html: '<h2>In this survey, we will ask you a couple questions about your preferences.</h2>',
+          html: '<h2>We will ask you a couple to know you more!</h2>',
         },
       ],
     },
     {
-      visible: true,
       elements: [
         {
           name: 'fitness-goal',
@@ -23,7 +26,6 @@ const surveyJson = {
             { value: 4, text: 'Endurance Training' },
             { value: 5, text: 'Being Healthier' },
           ],
-          isRequired: true,
         },
       ],
     },
@@ -39,6 +41,7 @@ const surveyJson = {
             { value: 3, text: 'Moderate' },
             { value: 4, text: 'Mild and relaxing' },
           ],
+          isRequired: true,
         },
       ],
     },
