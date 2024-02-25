@@ -2,30 +2,32 @@
 // https://surveyjs.io/form-library/documentation/design-survey/create-a-multi-page-survey
 
 const surveyJson = {
-  showProgressBar: 'top',
-  completedHtml: '<h3>Thank you! Together we are better!!</h3>',
+  completedHtml: '<p>Thank you! Together we are better!!</p>',
+  showQuestionNumbers: 'off',
   pages: [
+    // {
+    //   elements: [
+    //     {
+    //       type: 'html',
+    //       html: '<h2>We will ask you a couple to know you more!</h2>',
+    //     },
+    //   ],
+    // },
     {
       elements: [
         {
-          type: 'html',
-          html: '<h2>We will ask you a couple to know you more!</h2>',
-        },
-      ],
-    },
-    {
-      elements: [
-        {
+          visible: true,
           name: 'fitness-goal',
           title: 'What is your primary fitness goal?',
           type: 'radiogroup',
           choices: [
-            { value: 1, text: 'Weight Loss' },
+            { value: 1, text: 'Weight Loss', description: 'This is a test', questionDescriptionLocation: 'under' },
             { value: 2, text: 'Muscle Building' },
             { value: 3, text: 'Flexibility' },
             { value: 4, text: 'Endurance Training' },
             { value: 5, text: 'Being Healthier' },
           ],
+          itemTemplate: '<div class="text-red-500">{{title}}</div>',
         },
       ],
     },
@@ -36,7 +38,7 @@ const surveyJson = {
           title: 'How do you prefer your workouts?',
           type: 'radiogroup',
           choices: [
-            { value: 1, text: 'Hardcore' },
+            { value: 1, text: 'Hardcore', description: 'This is a test' },
             { value: 2, text: 'Intense' },
             { value: 3, text: 'Moderate' },
             { value: 4, text: 'Mild and relaxing' },

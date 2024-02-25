@@ -1,0 +1,52 @@
+/* You can add your custom css here.*/
+.sd-body.sd-body--static {
+  max-width: 100%;
+  background: white;
+}
+
+.sd-body__page {
+  margin: 0;
+  padding: 0;
+}
+
+.sd-element--with-frame.sd-question--title-top {
+  width: 100%;
+  padding: 0;
+}
+
+.sd-question__header {
+  background: #fafafd;
+  display: flex;
+  align-items: center;
+}
+
+sd-question--title-top {
+  padding: 0;
+}
+
+.sd-question {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.sd-question__header,
+.sd-row__question {
+  width: 50%;
+  gap: 2rem;
+}
+
+.sd-question__header .sv-title-actions__title {
+  padding: 20px;
+}
+
+.sd-question__header .sv-title-actions__title .sv-string-viewer {
+  color: #525a67;
+  font-size: 2rem;
+  font-weight: bold;
+  line-height: 3rem;
+}
+
+.sd-element__title span {
+  color: transparent;
+}
