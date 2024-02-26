@@ -22,7 +22,27 @@
   padding: 20px;
 }
 
-sd-question--title-top {
+.sd-item {
+  @apply border border-gray-200 p-4 rounded mb-2 cursor-pointer;
+}
+
+.sd-item--checked {
+  @apply bg-gray-200/30 border-gray-400;
+}
+
+.sd-item__decorator {
+  display: none;
+}
+
+.sd-item .sv-string-viewer {
+  cursor: pointer;
+}
+
+.sd-item--checked .sv-string-viewer {
+  @apply text-red-500;
+}
+
+.sd-question--title-top {
   padding: 0;
 }
 

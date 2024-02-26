@@ -34,7 +34,8 @@ class Home extends Nullstack<HomeProps> {
         // console.log(options.question.choices[index].jsonObj)
         // console.log(index, element.textContent)
         const description = options.question.choices[index].jsonObj?.description || ''
-        element.innerHTML = `${element.textContent}<br /><span class="text-gray-400 text-xs">${description}</span>`
+        if (description)
+          element.innerHTML = `${element.textContent} 🔥<br /><span class="text-gray-400 text-xs">${description}</span>`
       })
     })
     jQuery('#surveyElement').Survey({ model: survey })
