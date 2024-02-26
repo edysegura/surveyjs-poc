@@ -19,6 +19,7 @@ const surveyJson = {
           visible: true,
           name: 'fitness-goal',
           title: 'What is your primary fitness goal?',
+          description: 'Select the best match',
           type: 'radiogroup',
           choices: [
             { value: 1, text: 'Weight Loss', description: 'This is a test', questionDescriptionLocation: 'under' },
@@ -27,7 +28,6 @@ const surveyJson = {
             { value: 4, text: 'Endurance Training' },
             { value: 5, text: 'Being Healthier' },
           ],
-          itemTemplate: '<div class="text-red-500">{{title}}</div>',
         },
       ],
     },

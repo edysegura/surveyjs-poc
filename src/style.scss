@@ -16,7 +16,8 @@
 .sd-question__header {
   background: #fafafd;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
   min-height: 300px;
   padding: 20px;
 }
