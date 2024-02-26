@@ -3,7 +3,7 @@
 
 const surveyJson = {
   completedHtml: '<h5>Thank you! Together we are better!!</h5>',
-  showQuestionNumbers: 'off',
+  showQuestionNumbers: false,
   pages: [
     // {
     //   elements: [
@@ -22,11 +22,15 @@ const surveyJson = {
           description: 'Select the best match',
           type: 'radiogroup',
           choices: [
-            { value: 1, text: 'Weight Loss', description: 'This is a test', questionDescriptionLocation: 'under' },
-            { value: 2, text: 'Muscle Building' },
-            { value: 3, text: 'Flexibility' },
-            { value: 4, text: 'Endurance Training' },
-            { value: 5, text: 'Being Healthier' },
+            {
+              value: 1,
+              text: 'Weight Loss',
+              description: 'Your journey should be more about getting to your ideal weight',
+            },
+            { value: 2, text: 'Muscle Building', description: 'Your journey should be more about gaining muscle' },
+            { value: 3, text: 'Flexibility', description: 'Your journey should be more about flexibility' },
+            { value: 4, text: 'Endurance Training', description: 'Your journey should be more about endurance' },
+            { value: 5, text: 'Being Healthier', description: 'Your journey should be more about being healthier' },
           ],
         },
       ],
