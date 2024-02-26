@@ -37,8 +37,8 @@ class Home extends Nullstack<HomeProps> {
 
   render() {
     return (
-      <section class="w-full max-w-3xl min-h-screen my-0 mx-auto flex items-center p-6 flex-wrap md:flex-nowrap flex-col gap-4">
-        <div id="surveyElement" class="w-full" />
+      <section class="w-full max-w-[1440px] min-h-screen my-0 mx-auto flex flex-wrap md:flex-nowrap flex-col gap-4">
+        <div id="surveyElement" class="w-full h-[500px]" />
         <pre class="text-white">{JSON.stringify(this.surveyResponses, null, 2)}</pre>
       </section>
     )

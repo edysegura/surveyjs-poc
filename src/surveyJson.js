@@ -2,7 +2,7 @@
 // https://surveyjs.io/form-library/documentation/design-survey/create-a-multi-page-survey
 
 const surveyJson = {
-  completedHtml: '<p>Thank you! Together we are better!!</p>',
+  completedHtml: '<h5>Thank you! Together we are better!!</h5>',
   showQuestionNumbers: 'off',
   pages: [
     // {
