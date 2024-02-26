@@ -2,7 +2,6 @@ import Nullstack, { NullstackClientContext } from 'nullstack'
 
 import jsonSurvey from './surveyJson.js'
 
-import 'survey-jquery/defaultV2.min.css'
 import './style.scss'
 
 interface HomeProps {
@@ -44,8 +43,8 @@ class Home extends Nullstack<HomeProps> {
   render() {
     return (
       <section class="w-full max-w-[1440px] min-h-screen my-0 mx-auto flex flex-wrap md:flex-nowrap flex-col gap-4">
-        <div id="surveyElement" class="w-full h-[600px]" />
-        <pre class="text-white">{JSON.stringify(this.surveyResponses, null, 2)}</pre>
+        <div id="surveyElement" class="w-full min-h-screen bg-white" />
+        {/* <pre class="text-white">{JSON.stringify(this.surveyResponses, null, 2)}</pre> */}
       </section>
     )
   }
