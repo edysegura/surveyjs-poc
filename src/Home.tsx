@@ -1,5 +1,7 @@
 import Nullstack, { NullstackClientContext } from 'nullstack'
 
+import { AfterRenderQuestionEvent } from 'survey-jquery'
+
 import jsonSurvey from './surveyJson.js'
 
 import './style.scss'
@@ -10,6 +12,7 @@ interface HomeProps {
 
 class Home extends Nullstack<HomeProps> {
 
+  _surveyJs: any
   surveyResponses: any
 
   prepare({ project, page, greeting }: NullstackClientContext<HomeProps>) {
@@ -25,19 +28,46 @@ class Home extends Nullstack<HomeProps> {
     const { default: jQuery } = await import('jquery')
     const { Model } = await import('survey-jquery')
     const survey = new Model(jsonSurvey)
+    survey.start()
+    this._surveyJs = survey
     survey.onComplete.add((sender) => {
       this.surveyResponses = sender.data
     })
     survey.onAfterRenderQuestion.add((_, options) => {
-      options.htmlElement.querySelectorAll('.sd-item__control-label .sv-string-viewer').forEach((element, index) => {
-        // console.log(options.question.choices[index].jsonObj)
-        // console.log(index, element.textContent)
-        const description = options.question.choices[index].jsonObj?.description || ''
-        if (description)
-          element.innerHTML = `${element.textContent} 🔥<br /><span class="text-gray-400 text-xs">${description}</span>`
-      })
+      this._addButtonToSurvey(options)
+      this._addAnswerDescription(options)
     })
     jQuery('#surveyElement').Survey({ model: survey })
+  }
+
+  _addButtonToSurvey(options: AfterRenderQuestionEvent) {
+    const container = options.htmlElement.querySelector('.sd-question__header')
+    const button = document.createElement('button')
+    button.classList.add(
+      'bg-blue-500',
+      'text-white',
+      'p-2',
+      'rounded-md',
+      'hover:bg-blue-600',
+      'transition-colors',
+      'duration-300',
+    )
+    button.textContent = 'Continue'
+    button.onclick = () => {
+      const navigatedForward = this._surveyJs.nextPage()
+      if (!navigatedForward) {
+        alert('Navigation failed!')
+      }
+    }
+    container?.appendChild(button)
+  }
+
+  _addAnswerDescription(options: AfterRenderQuestionEvent) {
+    options.htmlElement.querySelectorAll('.sd-item__control-label .sv-string-viewer').forEach((element, index) => {
+      const description = options.question.choices[index].jsonObj?.description || ''
+      if (description)
+        element.innerHTML = `${element.textContent} 🔥<br /><span class="text-gray-400 text-xs">${description}</span>`
+    })
   }
 
   render() {
