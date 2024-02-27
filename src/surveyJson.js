@@ -7,7 +7,7 @@ const surveyJson = {
   showQuestionNumbers: false,
   pages: [
     {
-      name: 'page1',
+      name: 'fitness-goal',
       elements: [
         {
           name: 'fitness-goal',
@@ -50,7 +50,7 @@ const surveyJson = {
       ],
     },
     {
-      name: 'page2',
+      name: 'workouts-preference',
       elements: [
         {
           name: 'workouts-preference',
@@ -61,7 +61,7 @@ const surveyJson = {
             { value: 1, text: 'Hardcore', description: 'You like to push yourself to the limit' },
             { value: 2, text: 'Intense', description: 'You like to feel the burn' },
             { value: 3, text: 'Moderate', description: 'You like to feel the burn' },
-            { value: 4, text: 'Mild and relaxing', description: 'You like to feel the burn' },
+            { value: 4, text: 'Mild and relaxing' },
           ],
           isRequired: true,
         },
