@@ -15,7 +15,7 @@ declare function Dialog(): NullstackNode
 class Home extends Nullstack<HomeProps> {
 
   _survey: SurveyModel | undefined
-  surveyResponses: any
+  surveyResponses: Record<string, unknown> = {}
   dialog: HTMLDivElement | undefined
 
   prepare({ project, page, greeting }: NullstackClientContext<HomeProps>) {
