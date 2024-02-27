@@ -7,7 +7,7 @@ const surveyJson = {
   showQuestionNumbers: false,
   pages: [
     {
-      name: 'fitness-goal',
+      name: 'fitness-goal-page',
       elements: [
         {
           name: 'fitness-goal',
@@ -50,19 +50,14 @@ const surveyJson = {
       ],
     },
     {
-      name: 'workouts-preference',
+      name: 'workouts-preference-page',
       elements: [
         {
           name: 'workouts-preference',
           title: 'How do you prefer your workouts?',
           description: 'Please select at least one option',
           type: 'radiogroup',
-          choices: [
-            { value: 1, text: 'Hardcore', description: 'You like to push yourself to the limit' },
-            { value: 2, text: 'Intense', description: 'You like to feel the burn' },
-            { value: 3, text: 'Moderate', description: 'You like to feel the burn' },
-            { value: 4, text: 'Mild and relaxing' },
-          ],
+          choices: ['Hardcore', 'Intense', 'Moderate', 'Mild and relaxing'],
           isRequired: true,
         },
       ],
@@ -77,11 +72,11 @@ const surveyJson = {
           maxSelectedChoices: 3,
           type: 'checkbox',
           choices: [
-            { value: 1, text: 'Cardio', description: 'You like to push yourself to the limit' },
-            { value: 2, text: 'Strength', description: 'You like to feel the burn' },
-            { value: 3, text: 'Flexibility', description: 'You like to feel the burn' },
-            { value: 4, text: 'Yoga', description: 'You like to feel the burn' },
-            { value: 5, text: 'Pilates', description: 'You like to feel the burn' },
+            { value: 'Cardio', description: 'You like to push yourself to the limit' },
+            { value: 'Strength', description: 'You like to become stronger' },
+            { value: 'Flexibility', description: 'You like to have flexibility' },
+            { value: 'Yoga', description: 'You like to know better yourself' },
+            { value: 'Pilates', description: 'You like to live well' },
           ],
         },
       ],
