@@ -28,7 +28,6 @@ class Home extends Nullstack<HomeProps> {
     const { default: jQuery } = await import('jquery')
     const { Model } = await import('survey-jquery')
     const survey = new Model(jsonSurvey)
-    survey.start()
     this._surveyJs = survey
     survey.onComplete.add((sender) => {
       this.surveyResponses = sender.data
@@ -54,9 +53,8 @@ class Home extends Nullstack<HomeProps> {
     )
     button.textContent = 'Continue'
     button.onclick = () => {
-      const navigatedForward = this._surveyJs.nextPage()
-      if (!navigatedForward) {
-        alert('Navigation failed!')
+      if (this._surveyJs.currentPage.validate()) {
+        this._surveyJs.nextPage()
       }
     }
     container?.appendChild(button)

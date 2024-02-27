@@ -6,18 +6,10 @@ const surveyJson = {
   // showNavigationButtons: false,
   showQuestionNumbers: false,
   pages: [
-    // {
-    //   elements: [
-    //     {
-    //       type: 'html',
-    //       html: '<h2>We will ask you a couple to know you more!</h2>',
-    //     },
-    //   ],
-    // },
     {
+      name: 'page1',
       elements: [
         {
-          visible: true,
           name: 'fitness-goal',
           title: 'What is your primary fitness goal?',
           description: 'Select the best match',
@@ -49,22 +41,25 @@ const surveyJson = {
       ],
     },
     {
+      name: 'page2',
       elements: [
         {
           name: 'workouts-preference',
           title: 'How do you prefer your workouts?',
+          description: 'Select the best match',
           type: 'radiogroup',
           choices: [
-            { value: 1, text: 'Hardcore', description: 'This is a test' },
-            { value: 2, text: 'Intense' },
-            { value: 3, text: 'Moderate' },
-            { value: 4, text: 'Mild and relaxing' },
+            { value: 1, text: 'Hardcore', description: 'You like to push yourself to the limit' },
+            { value: 2, text: 'Intense', description: 'You like to feel the burn' },
+            { value: 3, text: 'Moderate', description: 'You like to feel the burn' },
+            { value: 4, text: 'Mild and relaxing', description: 'You like to feel the burn' },
           ],
           isRequired: true,
         },
       ],
     },
     {
+      name: 'page3',
       elements: [
         {
           name: 'how-can-we-improve',
@@ -74,6 +69,7 @@ const surveyJson = {
       ],
     },
     {
+      name: 'page4',
       elements: [
         {
           name: 'disappointing-experience',
