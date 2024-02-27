@@ -42,6 +42,11 @@
     line-height: normal;
   }
 
+  .sd-question__required-text {
+    color: #4b5563;
+    font-size: 48px;
+  }
+
   .sd-question__description {
     color: #7f8184;
     font-size: 16px;
@@ -55,15 +60,17 @@
   .sv-action--hidden {
     display: none;
   }
+}
 
-  .sd-btn__instill {
-    background-color: #2c2c2c;
-    padding: 12px;
-    width: fit-content;
-    border-radius: 6px;
-    &:hover {
-      background-color: #4b5563;
-    }
+/* BUTTONS */
+.sd-btn__instill {
+  background-color: #2c2c2c;
+  padding: 12px;
+  width: fit-content;
+  border-radius: 6px;
+  color: white;
+  &:hover {
+    background-color: #4b5563;
   }
 }
 

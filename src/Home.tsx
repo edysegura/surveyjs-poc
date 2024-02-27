@@ -81,11 +81,7 @@ class Home extends Nullstack<HomeProps> {
         <main class="bg-white p-8 rounded-md flex flex-col gap-4">
           <h1 class="text-2xl font-bold">Survey Responses</h1>
           <pre>{JSON.stringify(this.surveyResponses, null, 2)}</pre>
-          <button
-            type="button"
-            class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-            onclick={() => document.location.reload()}
-          >
+          <button type="button" class="sd-btn__instill !w-full" onclick={() => document.location.reload()}>
             Restart
           </button>
         </main>

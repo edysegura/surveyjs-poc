@@ -55,7 +55,7 @@ const surveyJson = {
         {
           name: 'workouts-preference',
           title: 'How do you prefer your workouts?',
-          description: 'Select the best match',
+          description: 'Please select at least one option',
           type: 'radiogroup',
           choices: [
             { value: 1, text: 'Hardcore', description: 'You like to push yourself to the limit' },
