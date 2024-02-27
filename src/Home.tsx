@@ -54,7 +54,8 @@ class Home extends Nullstack<HomeProps> {
     button.textContent = 'Continue'
     button.onclick = () => {
       if (this._surveyJs.currentPage.validate()) {
-        this._surveyJs.nextPage()
+        // this._surveyJs.currentPage = 1
+        alert('Validated')
       }
     }
     container?.appendChild(button)
@@ -63,8 +64,14 @@ class Home extends Nullstack<HomeProps> {
   _addAnswerDescription(options: AfterRenderQuestionEvent) {
     options.htmlElement.querySelectorAll('.sd-item__control-label .sv-string-viewer').forEach((element, index) => {
       const description = options.question.choices[index].jsonObj?.description || ''
+      const icon = ['⭐️', '🔥', '🌕', '🌎'].at(Math.floor(index % 4))
       if (description)
-        element.innerHTML = `${element.textContent} 🔥<br /><span class="text-gray-400 text-xs">${description}</span>`
+        element.innerHTML = `
+          <div class="flex flex-col">
+            <span class="flex">${element.textContent}<span class="ml-auto">${icon}</span></span>
+            <span class="text-gray-400 text-xs">${description}</span>
+          </div>
+        `
     })
   }
 
@@ -72,7 +79,6 @@ class Home extends Nullstack<HomeProps> {
     return (
       <section class="w-full max-w-[1440px] min-h-screen my-0 mx-auto flex flex-wrap md:flex-nowrap flex-col gap-4">
         <div id="surveyElement" class="w-full min-h-screen bg-white" />
-        {/* <pre class="text-white">{JSON.stringify(this.surveyResponses, null, 2)}</pre> */}
       </section>
     )
   }
