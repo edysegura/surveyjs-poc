@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
 * {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .sd-body.sd-body--static {
@@ -36,14 +36,14 @@
   }
 
   .sd-element__title .sv-string-viewer {
-    color: #4B5563;
+    color: #4b5563;
     font-size: 48px;
     font-weight: 600;
     line-height: normal;
   }
 
   .sd-question__description {
-    color: #7F8184;
+    color: #7f8184;
     font-size: 16px;
   }
 
@@ -83,29 +83,29 @@
   .sd-item {
     @apply border border-gray-200 p-4 rounded-lg mb-4 cursor-pointer;
   }
-  
+
   .sd-item__decorator {
     display: none;
   }
 
   .sd-item--checked {
-    border-color: #97ACBF;
-    background-color: #F9FAFB;
+    border-color: #97acbf;
+    background-color: #f9fafb;
   }
 
   .sd-item .sv-string-viewer {
     cursor: pointer;
-    color: #4B5563;
+    color: #4b5563;
     font-weight: 500;
     line-height: 24px;
   }
-  
+
   .sd-item--checked .sv-string-viewer {
-    color: #97ACBF;
+    color: #97acbf;
   }
 
   .sd-comment {
-    border: 1px solid #97ACBF;
+    border: 1px solid #97acbf;
     width: 100%;
   }
 }
@@ -121,7 +121,7 @@
 }
 
 .sd-completedpage {
-  color: #4B5563;
+  color: #4b5563;
   text-align: center;
   padding: 5rem 0;
   font-size: 48px;
