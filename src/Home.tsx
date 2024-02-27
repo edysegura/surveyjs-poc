@@ -63,10 +63,11 @@ class Home extends Nullstack<HomeProps> {
   _addAnswerDescription(options: AfterRenderQuestionEvent) {
     options.htmlElement.querySelectorAll('.sd-item__control-label .sv-string-viewer').forEach((element, index) => {
       const { description = '', icon = '' } = options.question.choices[index].jsonObj
+      const descriptionHtml = description ? `<span class="text-gray-400 text-xs">${description}</span>` : ''
       element.innerHTML = `
-        <div class="flex flex-col gap-2">
+        <div class="flex flex-col gap-2 justify-center">
           <span class="flex">${element.textContent}<span class="ml-auto">${icon}</span></span>
-          <span class="text-gray-400 text-xs">${description}</span>
+          ${descriptionHtml}
         </div>
       `
     })
