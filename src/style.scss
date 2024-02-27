@@ -23,7 +23,7 @@
   padding: 0;
 }
 
-/* question */
+/* QUESTION SECTION */
 .sd-row__question {
   min-height: 100vh;
 
@@ -55,19 +55,19 @@
   .sv-action--hidden {
     display: none;
   }
-}
 
-/* buttons */
-.sv-components-column {
-  position: absolute;
-  bottom: 0;
-
-  .sv-action__content .sd-btn {
-    color: red;
+  .sd-btn__instill {
+    background-color: #2c2c2c;
+    padding: 12px;
+    width: fit-content;
+    border-radius: 6px;
+    &:hover {
+      background-color: #4b5563;
+    }
   }
 }
 
-/* answer */
+/* ANSWER SECTION */
 .sd-question__content {
   @extend %flex-full;
   align-items: center;
@@ -75,7 +75,8 @@
   .sd-selectbase {
     width: 100%;
 
-    .sd-radio__control {
+    .sd-radio__control,
+    .sd-checkbox__control {
       display: none;
     }
   }

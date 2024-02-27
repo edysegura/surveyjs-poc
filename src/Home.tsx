@@ -1,6 +1,6 @@
 import Nullstack, { NullstackClientContext, NullstackNode } from 'nullstack'
 
-import { AfterRenderQuestionEvent } from 'survey-jquery'
+import { AfterRenderQuestionEvent, SurveyModel } from 'survey-jquery'
 
 import jsonSurvey from './surveyJson.js'
 
@@ -14,7 +14,7 @@ declare function Dialog(): NullstackNode
 
 class Home extends Nullstack<HomeProps> {
 
-  _survey: any
+  _survey: SurveyModel | undefined
   surveyResponses: any
   dialog: HTMLDivElement | undefined
 
@@ -48,20 +48,12 @@ class Home extends Nullstack<HomeProps> {
     const container = options.htmlElement.querySelector('.sd-question__header')
     const survey = this._survey
     const continueBtn = document.createElement('button')
-    continueBtn.classList.add(
-      'bg-blue-500',
-      'text-white',
-      'p-2',
-      'rounded-md',
-      'hover:bg-blue-600',
-      'transition-colors',
-      'duration-300',
-    )
-    continueBtn.textContent = survey.isLastPage ? 'Complete' : 'Continue'
+    continueBtn.classList.add('sd-btn__instill')
+    continueBtn.textContent = survey?.isLastPage ? 'Complete' : 'Continue'
     continueBtn.onclick = (event) => {
       event.stopPropagation()
-      const performAction = survey.isLastPage ? 'completeLastPage' : 'nextPage'
-      if (survey.currentPage.validate()) {
+      const performAction = survey?.isLastPage ? 'completeLastPage' : 'nextPage'
+      if (survey?.currentPage.validate()) {
         survey[performAction]()
       }
     }
