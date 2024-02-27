@@ -68,6 +68,25 @@ const surveyJson = {
       ],
     },
     {
+      name: 'page2-1',
+      elements: [
+        {
+          name: 'exercises',
+          title: 'Which exercises do you prefer?',
+          description: 'Select up to 3 options',
+          maxSelectedChoices: 3,
+          type: 'checkbox',
+          choices: [
+            { value: 1, text: 'Cardio', description: 'You like to push yourself to the limit' },
+            { value: 2, text: 'Strength', description: 'You like to feel the burn' },
+            { value: 3, text: 'Flexibility', description: 'You like to feel the burn' },
+            { value: 4, text: 'Yoga', description: 'You like to feel the burn' },
+            { value: 5, text: 'Pilates', description: 'You like to feel the burn' },
+          ],
+        },
+      ],
+    },
+    {
       name: 'page3',
       elements: [
         {
