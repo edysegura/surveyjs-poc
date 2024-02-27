@@ -1,4 +1,4 @@
-import Nullstack, { NullstackClientContext } from 'nullstack'
+import Nullstack, { NullstackClientContext, NullstackNode } from 'nullstack'
 
 import { AfterRenderQuestionEvent } from 'survey-jquery'
 
@@ -10,10 +10,13 @@ interface HomeProps {
   greeting: string
 }
 
+declare function Dialog(): NullstackNode
+
 class Home extends Nullstack<HomeProps> {
 
   _survey: any
   surveyResponses: any
+  dialog: HTMLDivElement | undefined
 
   prepare({ project, page, greeting }: NullstackClientContext<HomeProps>) {
     page.title = `${project.name} - ${greeting}`
@@ -31,6 +34,8 @@ class Home extends Nullstack<HomeProps> {
     this._survey = survey
     survey.onComplete.add((sender) => {
       this.surveyResponses = sender.data
+      this.dialog?.classList.remove('hidden')
+      this.dialog?.classList.add('flex')
     })
     survey.onAfterRenderQuestion.add((_, options) => {
       this._addButtonToSurvey(options)
@@ -55,12 +60,9 @@ class Home extends Nullstack<HomeProps> {
     continueBtn.textContent = survey.isLastPage ? 'Complete' : 'Continue'
     continueBtn.onclick = (event) => {
       event.stopPropagation()
-      if (this._survey.currentPage.validate()) {
-        if (survey.isLastPage) {
-          survey.completeLastPage()
-          return
-        }
-        survey.nextPage()
+      const performAction = survey.isLastPage ? 'completeLastPage' : 'nextPage'
+      if (survey.currentPage.validate()) {
+        survey[performAction]()
       }
     }
     container?.appendChild(continueBtn)
@@ -78,10 +80,32 @@ class Home extends Nullstack<HomeProps> {
     })
   }
 
+  renderDialog() {
+    return (
+      <div
+        ref={this.dialog}
+        class="fixed text-black hidden inset-0 z-50 items-center justify-center bg-black bg-opacity-50"
+      >
+        <main class="bg-white p-8 rounded-md flex flex-col gap-4">
+          <h1 class="text-2xl font-bold">Survey Responses</h1>
+          <pre>{JSON.stringify(this.surveyResponses, null, 2)}</pre>
+          <button
+            type="button"
+            class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            onclick={() => document.location.reload()}
+          >
+            Restart
+          </button>
+        </main>
+      </div>
+    )
+  }
+
   render() {
     return (
       <section class="w-full max-w-[1440px] min-h-screen my-0 mx-auto flex flex-wrap md:flex-nowrap flex-col gap-4">
         <div id="surveyElement" class="w-full min-h-screen bg-white" />
+        <Dialog />
       </section>
     )
   }

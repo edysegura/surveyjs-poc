@@ -81,8 +81,8 @@ const surveyJson = {
       name: 'page4',
       elements: [
         {
-          name: 'disappointing-experience',
-          title: 'Please let us know why you had such a disappointing experience with our product',
+          name: 'referral',
+          title: 'How did you find us?',
           type: 'comment',
         },
       ],
