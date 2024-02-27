@@ -3,7 +3,7 @@
 
 const surveyJson = {
   completedHtml: '<h5>Thank you! Together we are better!!</h5>',
-  // showNavigationButtons: false,
+  showNavigationButtons: false,
   showQuestionNumbers: false,
   pages: [
     {
