@@ -12,7 +12,7 @@ interface HomeProps {
 
 class Home extends Nullstack<HomeProps> {
 
-  _surveyJs: any
+  _survey: any
   surveyResponses: any
 
   prepare({ project, page, greeting }: NullstackClientContext<HomeProps>) {
@@ -28,7 +28,7 @@ class Home extends Nullstack<HomeProps> {
     const { default: jQuery } = await import('jquery')
     const { Model } = await import('survey-jquery')
     const survey = new Model(jsonSurvey)
-    this._surveyJs = survey
+    this._survey = survey
     survey.onComplete.add((sender) => {
       this.surveyResponses = sender.data
     })
@@ -41,8 +41,9 @@ class Home extends Nullstack<HomeProps> {
 
   _addButtonToSurvey(options: AfterRenderQuestionEvent) {
     const container = options.htmlElement.querySelector('.sd-question__header')
-    const button = document.createElement('button')
-    button.classList.add(
+    const survey = this._survey
+    const continueBtn = document.createElement('button')
+    continueBtn.classList.add(
       'bg-blue-500',
       'text-white',
       'p-2',
@@ -51,27 +52,29 @@ class Home extends Nullstack<HomeProps> {
       'transition-colors',
       'duration-300',
     )
-    button.textContent = 'Continue'
-    button.onclick = (event) => {
+    continueBtn.textContent = survey.isLastPage ? 'Complete' : 'Continue'
+    continueBtn.onclick = (event) => {
       event.stopPropagation()
-      if (this._surveyJs.currentPage.validate()) {
-        this._surveyJs.nextPage()
+      if (this._survey.currentPage.validate()) {
+        if (survey.isLastPage) {
+          survey.completeLastPage()
+          return
+        }
+        survey.nextPage()
       }
     }
-    container?.appendChild(button)
+    container?.appendChild(continueBtn)
   }
 
   _addAnswerDescription(options: AfterRenderQuestionEvent) {
     options.htmlElement.querySelectorAll('.sd-item__control-label .sv-string-viewer').forEach((element, index) => {
-      const description = options.question.choices[index].jsonObj?.description || ''
-      const icon = ['⭐️', '🔥', '🌕', '🌎'].at(Math.floor(index % 4))
-      if (description)
-        element.innerHTML = `
-          <div class="flex flex-col">
-            <span class="flex">${element.textContent}<span class="ml-auto">${icon}</span></span>
-            <span class="text-gray-400 text-xs">${description}</span>
-          </div>
-        `
+      const { description = '', icon = '' } = options.question.choices[index].jsonObj
+      element.innerHTML = `
+        <div class="flex flex-col gap-2">
+          <span class="flex">${element.textContent}<span class="ml-auto">${icon}</span></span>
+          <span class="text-gray-400 text-xs">${description}</span>
+        </div>
+      `
     })
   }
 
