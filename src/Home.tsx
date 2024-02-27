@@ -41,6 +41,7 @@ class Home extends Nullstack<HomeProps> {
 
   _addButtonToSurvey(options: AfterRenderQuestionEvent) {
     const container = options.htmlElement.querySelector('.sd-question__header')
+    const nextButton = document.querySelector('.sd-question__next-btn')
     const button = document.createElement('button')
     button.classList.add(
       'bg-blue-500',
@@ -54,8 +55,7 @@ class Home extends Nullstack<HomeProps> {
     button.textContent = 'Continue'
     button.onclick = () => {
       if (this._surveyJs.currentPage.validate()) {
-        // this._surveyJs.currentPage = 1
-        alert('Validated')
+        nextButton?.dispatchEvent(new Event('click'))
       }
     }
     container?.appendChild(button)
