@@ -34,8 +34,7 @@ class Home extends Nullstack<HomeProps> {
     this._survey = survey
     survey.onComplete.add((sender) => {
       this.surveyResponses = sender.data
-      this.dialog?.classList.remove('hidden')
-      this.dialog?.classList.add('flex')
+      this.showDialog()
     })
     survey.onAfterRenderQuestion.add((_, options) => {
       this._addButtonToSurvey(options)
@@ -71,6 +70,11 @@ class Home extends Nullstack<HomeProps> {
         </div>
       `
     })
+  }
+
+  showDialog() {
+    this.dialog?.classList.remove('hidden')
+    this.dialog?.classList.add('flex')
   }
 
   renderDialog() {
