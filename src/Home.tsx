@@ -37,24 +37,26 @@ class Home extends Nullstack<HomeProps> {
       this.showDialog()
     })
     survey.onAfterRenderQuestion.add((_, options) => {
-      this._addButtonToSurvey(options)
-      this._addAnswerDescription(options)
+      this._addCustomButtons(options)
+      this._addCustomAnswerDescription(options)
     })
-    survey.onValueChanged.add((_, options) => {
-      const continueBtn = document.querySelector<HTMLButtonElement>('.sd-btn__instill')
-      if (continueBtn) {
-        continueBtn.disabled = !survey.currentPage.validate()
-      }
-    })
+    this._customContinueButtonValidation()
     jQuery('#surveyElement').Survey({ model: survey })
   }
 
-  _addButtonToSurvey(options: AfterRenderQuestionEvent) {
+  _addCustomButtons(options: AfterRenderQuestionEvent) {
     const container = options.htmlElement.querySelector('.sd-question__header')
+    const continueBtn = this._createContinueButton()
+    const skipQuestionBtn = this._createSkipQuestionButton()
+    container?.appendChild(continueBtn)
+    container?.appendChild(skipQuestionBtn)
+  }
+
+  _createContinueButton(): HTMLButtonElement {
     const survey = this._survey
     const continueBtn = document.createElement('button')
-    continueBtn.classList.add('sd-btn__instill')
     continueBtn.textContent = survey?.isLastPage ? 'Complete' : 'Continue'
+    continueBtn.classList.add('sd-btn__instill')
     continueBtn.disabled = true
     continueBtn.onclick = (event) => {
       event.stopPropagation()
@@ -63,10 +65,33 @@ class Home extends Nullstack<HomeProps> {
         survey[performAction]()
       }
     }
-    container?.appendChild(continueBtn)
+    return continueBtn
   }
 
-  _addAnswerDescription(options: AfterRenderQuestionEvent) {
+  _createSkipQuestionButton(): HTMLButtonElement {
+    const survey = this._survey
+    const skipQuestionBtn = document.createElement('button')
+    skipQuestionBtn.textContent = 'Skip Question'
+    skipQuestionBtn.classList.add('sd-btn__skip')
+    skipQuestionBtn.onclick = (event) => {
+      event.stopPropagation()
+      survey?.nextPage()
+    }
+    return skipQuestionBtn
+  }
+
+  _customContinueButtonValidation() {
+    const survey = this._survey
+    if (!survey) return
+    survey.onValueChanged.add(() => {
+      const continueBtn = document.querySelector<HTMLButtonElement>('.sd-btn__instill')
+      if (continueBtn) {
+        continueBtn.disabled = !survey.currentPage.validate()
+      }
+    })
+  }
+
+  _addCustomAnswerDescription(options: AfterRenderQuestionEvent) {
     options.htmlElement.querySelectorAll('.sd-item__control-label .sv-string-viewer').forEach((element, index) => {
       const { description = '', icon = '' } = options.question.choices[index].jsonObj
       const descriptionHtml = description ? `<span class="text-gray-400 text-xs">${description}</span>` : ''
