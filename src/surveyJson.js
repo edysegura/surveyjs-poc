@@ -16,7 +16,7 @@ const surveyJson = {
           type: 'radiogroup',
           choices: [
             {
-              value: 1,
+              value: 'weight-loss',
               text: 'Weight Loss',
               description: 'Your journey should be more about getting to your ideal weight',
               icon: '🏋️',
