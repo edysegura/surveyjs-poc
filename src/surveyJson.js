@@ -63,7 +63,7 @@ const surveyJson = {
       ],
     },
     {
-      name: 'page2-1',
+      name: 'exercises-page',
       elements: [
         {
           name: 'exercises',
@@ -82,21 +82,10 @@ const surveyJson = {
       ],
     },
     {
-      name: 'page3',
       elements: [
         {
           name: 'how-can-we-improve',
           title: 'In your opinion, what we could do to make even better your experience?',
-          type: 'comment',
-        },
-      ],
-    },
-    {
-      name: 'page4',
-      elements: [
-        {
-          name: 'referral',
-          title: 'How did you find us?',
           type: 'comment',
         },
       ],
