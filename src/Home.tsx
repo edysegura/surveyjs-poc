@@ -40,6 +40,12 @@ class Home extends Nullstack<HomeProps> {
       this._addButtonToSurvey(options)
       this._addAnswerDescription(options)
     })
+    survey.onValueChanged.add((_, options) => {
+      const continueBtn = document.querySelector<HTMLButtonElement>('.sd-btn__instill')
+      if (continueBtn) {
+        continueBtn.disabled = !survey.currentPage.validate()
+      }
+    })
     jQuery('#surveyElement').Survey({ model: survey })
   }
 
@@ -49,6 +55,7 @@ class Home extends Nullstack<HomeProps> {
     const continueBtn = document.createElement('button')
     continueBtn.classList.add('sd-btn__instill')
     continueBtn.textContent = survey?.isLastPage ? 'Complete' : 'Continue'
+    continueBtn.disabled = true
     continueBtn.onclick = (event) => {
       event.stopPropagation()
       const performAction = survey?.isLastPage ? 'completeLastPage' : 'nextPage'

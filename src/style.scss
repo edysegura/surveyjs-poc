@@ -72,6 +72,9 @@
   &:hover {
     background-color: #4b5563;
   }
+  &:disabled {
+    @apply bg-zinc-800/20;
+  }
 }
 
 /* ANSWER SECTION */
