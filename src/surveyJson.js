@@ -69,7 +69,8 @@ const surveyJson = {
           name: 'exercises',
           title: 'Which exercises do you prefer?',
           description: 'Select up to 3 options',
-          maxSelectedChoices: 3,
+          minSelectedChoices: 3,
+          // maxSelectedChoices: 3,
           type: 'checkbox',
           choices: [
             { value: 'Cardio', description: 'You like to push yourself to the limit' },
