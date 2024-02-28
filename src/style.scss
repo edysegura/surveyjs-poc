@@ -77,6 +77,10 @@
   }
 }
 
+.sd-btn__skip {
+  color: black;
+}
+
 /* ANSWER SECTION */
 .sd-question__content {
   @extend %flex-full;

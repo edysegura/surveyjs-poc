@@ -40,7 +40,6 @@ class Home extends Nullstack<HomeProps> {
       this._addCustomButtons(options)
       this._addCustomAnswerDescription(options)
     })
-    this._customContinueButtonValidation()
     jQuery('#surveyElement').Survey({ model: survey })
   }
 
@@ -50,6 +49,8 @@ class Home extends Nullstack<HomeProps> {
     const skipQuestionBtn = this._createSkipQuestionButton()
     container?.appendChild(continueBtn)
     container?.appendChild(skipQuestionBtn)
+    this._customContinueButtonValidation()
+    this._customSkipQuestionButtonValidation()
   }
 
   _createContinueButton(): HTMLButtonElement {
@@ -75,7 +76,10 @@ class Home extends Nullstack<HomeProps> {
     skipQuestionBtn.classList.add('sd-btn__skip')
     skipQuestionBtn.onclick = (event) => {
       event.stopPropagation()
-      survey?.nextPage()
+      const performAction = survey?.isLastPage ? 'completeLastPage' : 'nextPage'
+      if (survey?.currentPage.validate()) {
+        survey[performAction]()
+      }
     }
     return skipQuestionBtn
   }
@@ -88,6 +92,19 @@ class Home extends Nullstack<HomeProps> {
       if (continueBtn) {
         continueBtn.disabled = !survey.currentPage.validate()
       }
+    })
+  }
+
+  _customSkipQuestionButtonValidation() {
+    const survey = this._survey
+    if (!survey) return
+    survey.onCurrentPageChanged.add((_, options) => {
+      setTimeout(() => {
+        const skipQuestionBtn = document.querySelector<HTMLButtonElement>('.sd-btn__skip')
+        if (skipQuestionBtn && !survey.currentPage.validate()) {
+          skipQuestionBtn.classList.add('hidden')
+        }
+      }, 1)
     })
   }
 
