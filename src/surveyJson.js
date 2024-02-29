@@ -88,6 +88,7 @@ const surveyJson = {
           name: 'how-can-we-improve',
           title: 'In your opinion, what we could do to make even better your experience?',
           type: 'comment',
+          allowResize: false,
         },
       ],
     },
