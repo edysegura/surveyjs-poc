@@ -45,10 +45,13 @@ class Home extends Nullstack<HomeProps> {
 
   _addCustomButtons(options: AfterRenderQuestionEvent) {
     const container = options.htmlElement.querySelector('.sd-question__header')
+    const buttonsWrapper = document.createElement('div')
     const continueBtn = this._createContinueButton()
     const skipQuestionBtn = this._createSkipQuestionButton()
-    container?.appendChild(continueBtn)
-    container?.appendChild(skipQuestionBtn)
+    buttonsWrapper.classList.add('sd-btn__custom-wrapper')
+    buttonsWrapper.appendChild(continueBtn)
+    buttonsWrapper.appendChild(skipQuestionBtn)
+    container?.appendChild(buttonsWrapper)
     this._customContinueButtonValidation()
     this._customSkipQuestionButtonValidation()
   }
