@@ -79,6 +79,7 @@ class Home extends Nullstack<HomeProps> {
     skipQuestionBtn.classList.add('sd-btn__skip')
     skipQuestionBtn.onclick = (event) => {
       event.stopPropagation()
+      survey?.currentPage.questions.forEach((question: Question) => (question.value = undefined))
       const performAction = survey?.isLastPage ? 'completeLastPage' : 'nextPage'
       if (survey?.currentPage.validate()) {
         survey[performAction]()
