@@ -2,8 +2,6 @@ import Nullstack, { NullstackClientContext, NullstackNode } from 'nullstack'
 
 import { AfterRenderQuestionEvent, Question, SurveyModel } from 'survey-jquery'
 
-import jsonSurvey from './surveyJson.js'
-
 import './style.scss'
 
 interface HomeProps {
@@ -29,10 +27,17 @@ class Home extends Nullstack<HomeProps> {
     await this.initiateSurveyJs()
   }
 
+  // this method will be used to load json schema from a database
+  static async getJsonSchema() {
+    const { default: surveySchema } = await import('./surveyJson.js')
+    return surveySchema
+  }
+
   async initiateSurveyJs(): Promise<void> {
     const { default: jQuery } = await import('jquery')
     const { Model } = await import('survey-jquery')
-    const survey = new Model(jsonSurvey)
+    const surveySchema = await Home.getJsonSchema()
+    const survey = new Model(surveySchema)
     this._survey = survey
     survey.onComplete.add((sender) => {
       this.surveyResponses = sender.data
