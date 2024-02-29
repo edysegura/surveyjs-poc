@@ -1,5 +1,6 @@
 // References:
-// https://surveyjs.io/form-library/documentation/design-survey/create-a-multi-page-survey
+//  https://surveyjs.io/form-library/documentation/design-survey/create-a-multi-page-survey
+//  https://surveyjs.io/form-library/examples/external-form-navigation-system/reactjs
 
 const surveyJson = {
   completedHtml: '<h5>Thank you! Together we are better!!</h5>',
