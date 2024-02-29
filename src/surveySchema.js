@@ -2,7 +2,7 @@
 //  https://surveyjs.io/form-library/documentation/design-survey/create-a-multi-page-survey
 //  https://surveyjs.io/form-library/examples/external-form-navigation-system/reactjs
 
-const surveyJson = {
+const surveySchema = {
   completedHtml: '<h5>Thank you! Together we are better!!</h5>',
   showNavigationButtons: false,
   showQuestionNumbers: false,
@@ -96,4 +96,4 @@ const surveyJson = {
   ],
 }
 
-export default surveyJson
+export default surveySchema
