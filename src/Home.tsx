@@ -1,6 +1,6 @@
 import Nullstack, { NullstackClientContext, NullstackNode } from 'nullstack'
 
-import { AfterRenderQuestionEvent, SurveyModel } from 'survey-jquery'
+import { AfterRenderQuestionEvent, Question, SurveyModel } from 'survey-jquery'
 
 import jsonSurvey from './surveyJson.js'
 
@@ -11,12 +11,14 @@ interface HomeProps {
 }
 
 declare function Dialog(): NullstackNode
+declare function Header(): NullstackNode
 
 class Home extends Nullstack<HomeProps> {
 
   _survey: SurveyModel | undefined
   surveyResponses: Record<string, unknown> = {}
   dialog: HTMLDivElement | undefined
+  pagesInfo: HTMLDivElement | undefined
 
   prepare({ project, page, greeting }: NullstackClientContext<HomeProps>) {
     page.title = `${project.name} - ${greeting}`
@@ -39,6 +41,11 @@ class Home extends Nullstack<HomeProps> {
     survey.onAfterRenderQuestion.add((_, options) => {
       this._addCustomButtons(options)
       this._addCustomAnswerDescription(options)
+    })
+    survey.onCurrentPageChanged.add(() => {
+      if (this.pagesInfo) {
+        this.pagesInfo.textContent = `${survey.currentPageNo + 1} of ${survey.visiblePageCount}`
+      }
     })
     jQuery('#surveyElement').Survey({ model: survey })
   }
@@ -130,6 +137,19 @@ class Home extends Nullstack<HomeProps> {
     this.dialog?.classList.add('flex')
   }
 
+  renderHeader() {
+    const survey = this._survey
+    if (!survey) return false
+    const currentPage = survey.currentPageNo + 1
+    const totalPages = survey.visiblePageCount
+    return (
+      <div
+        ref={this.pagesInfo}
+        class="absolute top-3 right-6 text-black text-sm font-medium"
+      >{`${currentPage} of ${totalPages}`}</div>
+    )
+  }
+
   renderDialog() {
     return (
       <div
@@ -150,6 +170,7 @@ class Home extends Nullstack<HomeProps> {
   render() {
     return (
       <section class="w-full max-w-[1440px] min-h-screen my-0 mx-auto flex flex-wrap md:flex-nowrap flex-col gap-4">
+        <Header />
         <div id="surveyElement" class="w-full min-h-screen bg-white" />
         <Dialog />
       </section>
