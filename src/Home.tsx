@@ -101,7 +101,7 @@ class Home extends Nullstack<HomeProps> {
   _customSkipQuestionButtonValidation() {
     const survey = this._survey
     if (!survey) return
-    survey.onCurrentPageChanged.add((_, options) => {
+    survey.onCurrentPageChanged.add(() => {
       setTimeout(() => {
         const skipQuestionBtn = document.querySelector<HTMLButtonElement>('.sd-btn__skip')
         if (skipQuestionBtn && !survey.currentPage.validate()) {
