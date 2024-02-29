@@ -29,7 +29,7 @@ class Home extends Nullstack<HomeProps> {
 
   // this method will be used to load json schema from a database
   static async getJsonSchema() {
-    const { default: surveySchema } = await import('./surveyJson.js')
+    const { default: surveySchema } = await import('./surveySchema')
     return surveySchema
   }
 
